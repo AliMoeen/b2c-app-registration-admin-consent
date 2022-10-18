@@ -1,0 +1,182 @@
+
+@tenant_id = 6f952cb7-bbc8-4459-be91-fc31b3daaf0c
+@client_id = 9868e8b4-c150-43a6-a448-fce571e1534b
+
+//Add this var to a .env file 
+@client_secret = {{$dotenv client_secret}} 
+# VSCODE Extention: https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+
+### 
+# https://docs.microsoft.com/en-us/graph/auth-v2-service
+POST https://login.microsoftonline.com/{{tenant_id}}/oauth2/v2.0/token HTTP/1.1
+Host: login.microsoftonline.com
+Content-Type: application/x-www-form-urlencoded
+
+client_id={{client_id}}
+&scope=https%3A%2F%2Fgraph.microsoft.com%2F.default
+&client_secret={{client_secret}}
+&grant_type=client_credentials
+
+##### 
+
+# After above call, take the access_token and add it here
+@bearer_token = eyJ0eXAiOiJKV1QiLCJub25jZSI6Ii1SVzhYSHQwczctWGdXbWpCSzMtVUNuRVE0b09MV09NR0E2OXI2SE5icXMiLCJhbGciOiJSUzI1NiIsIng1dCI6IjJaUXBKM1VwYmpBWVhZR2FYRUpsOGxWMFRPSSIsImtpZCI6IjJaUXBKM1VwYmpBWVhZR2FYRUpsOGxWMFRPSSJ9.eyJhdWQiOiJodHRwczovL2dyYXBoLm1pY3Jvc29mdC5jb20iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC82Zjk1MmNiNy1iYmM4LTQ0NTktYmU5MS1mYzMxYjNkYWFmMGMvIiwiaWF0IjoxNjY2MDYyMDgyLCJuYmYiOjE2NjYwNjIwODIsImV4cCI6MTY2NjA2NTk4MiwiYWlvIjoiRTJaZ1lQRFgveWNXOHFoK1FVamEvN3Y5R244bUFnQT0iLCJhcHBfZGlzcGxheW5hbWUiOiJkZW1vLW1zLWdyYXBoIiwiYXBwaWQiOiI5ODY4ZThiNC1jMTUwLTQzYTYtYTQ0OC1mY2U1NzFlMTUzNGIiLCJhcHBpZGFjciI6IjEiLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC82Zjk1MmNiNy1iYmM4LTQ0NTktYmU5MS1mYzMxYjNkYWFmMGMvIiwiaWR0eXAiOiJhcHAiLCJvaWQiOiI0ZDk1ZGNmNi02ZTllLTQyYWYtODExZS1iMzFlMDJjOWViZDYiLCJyaCI6IjAuQVJVQXR5eVZiOGk3V1VTLWtmd3hzOXF2REFNQUFBQUFBQUFBd0FBQUFBQUFBQUNLQUFBLiIsInJvbGVzIjpbIlVzZXIuUmVhZFdyaXRlLkFsbCIsIkdyb3VwLlJlYWQuQWxsIiwiR3JvdXAuQ3JlYXRlIiwiR3JvdXAuUmVhZFdyaXRlLkFsbCIsIlVzZXIuSW52aXRlLkFsbCIsIlVzZXIuUmVhZC5BbGwiLCJHcm91cE1lbWJlci5SZWFkLkFsbCIsIlVzZXIuRXhwb3J0LkFsbCIsIlVzZXIuTWFuYWdlSWRlbnRpdGllcy5BbGwiLCJHcm91cE1lbWJlci5SZWFkV3JpdGUuQWxsIl0sInN1YiI6IjRkOTVkY2Y2LTZlOWUtNDJhZi04MTFlLWIzMWUwMmM5ZWJkNiIsInRlbmFudF9yZWdpb25fc2NvcGUiOiJOQSIsInRpZCI6IjZmOTUyY2I3LWJiYzgtNDQ1OS1iZTkxLWZjMzFiM2RhYWYwYyIsInV0aSI6InBNMjZpRHNYSTBxbnZWNmg5cXRQQUEiLCJ2ZXIiOiIxLjAiLCJ3aWRzIjpbIjliODk1ZDkyLTJjZDMtNDRjNy05ZDAyLWE2YWMyZDVlYTVjMyIsIjA5OTdhMWQwLTBkMWQtNGFjYi1iNDA4LWQ1Y2E3MzEyMWU5MCJdLCJ4bXNfdGNkdCI6MTY0MzY1NTY3N30.ttl4BAJAmEaEnF412cqlF3Y9okgCl6494SMobi-3CAlYSINrTICJBmrp9sdyU_eFcbZHazo7Jk7Yf5EWLGH5M4GaiOt03h05RiMYdQHV9Yir85mAtT_ahJrUCNQwTNLSR6q7cFT94I1DUUvVbZwVuKn62wfFXNBtEafSCEiLJiAGn5PAPgy3dc-4UQLXAZLqsTHZ86keCrGgQEiXPQwSkrl9sjRF16V5BCcDD2asIYIGfOsdtv0myfISlO3QvYyye3XAxKSxxbjiGGL5JEHXvGVU8QQLoBUL4FKGBymCEhmMC7d8iEVqGRsJDuO9UYH68JU9G2t7CHzVW1yqTL__5Q
+
+###
+# Get a list of all applications
+https://graph.microsoft.com/beta/applications/
+Authorization: Bearer {{bearer_token}}
+
+###
+# Get an application by its id
+https://graph.microsoft.com/v1.0/applications/2e7ef3b0-05a5-43ac-9e97-31f3d7048945
+Authorization: Bearer {{bearer_token}}
+
+###
+# Find an application by its display name
+https://graph.microsoft.com/beta/applications/?$filter= displayName eq 'api-consumer-app-03'
+Authorization: Bearer {{bearer_token}}
+
+
+
+###
+# Create a new application
+# Note you can take application paylod template by getting an existing application created from your requirements
+POST https://graph.microsoft.com/beta/applications/
+Content-type: application/json
+Authorization: Bearer {{bearer_token}}
+
+{
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#applications/$entity",
+  "identifierUris": [],
+  "displayName": "api-consumer-app-04",
+  "isFallbackPublicClient": false,
+  "signInAudience": "AzureADandPersonalMicrosoftAccount",
+  "tags": [],
+      "requiredResourceAccess": [
+        {
+          "resourceAppId": "2ce112fc-06c9-49e5-b726-59f09fac29cf",
+          "resourceAccess": [
+            {
+              "id": "735b0efa-b608-4d66-a389-15a2d2f25abb",
+              "type": "Scope"
+            }
+          ]
+        },
+        {
+          "resourceAppId": "00000003-0000-0000-c000-000000000000",
+          "resourceAccess": [
+            {
+              "id": "e1fe6dd8-ba31-4d61-89e7-88639da4683d",
+              "type": "Scope"
+            }
+          ]
+        }
+      ],
+}
+
+###
+# Variable assignments based on above call response
+@publisher_app_id = 2ce112fc-06c9-49e5-b726-59f09fac29cf
+@consumer_app_id = f72d8b26-fc1e-4096-a21c-f694758a3e9c
+@consumer_object_id = af013950-2ff9-4175-81cb-f0963716b281
+
+
+###
+https://graph.microsoft.com/beta/applications/?$filter= appId eq '{{consumer_app_id}}'
+Authorization: Bearer {{bearer_token}}
+
+###
+# Create a service principal for the api consumer app
+POST https://graph.microsoft.com/v1.0/servicePrincipals
+Content-type: application/json
+Authorization: Bearer {{bearer_token}}
+
+{
+  "appId": "{{consumer_app_id}}"
+}
+
+###
+# sample:  get an app by its appId
+GET https://graph.microsoft.com/beta/servicePrincipals/?$filter= appId eq 'e0331647-0f6a-4e5b-86bf-cd4f9795fc21'
+Content-type: application/json
+Authorization: Bearer {{bearer_token}}
+###
+# sample:  get a service principal by appId
+GET https://graph.microsoft.com/beta/servicePrincipals/?$filter= appId eq '{{consumer_app_id}}'
+Content-type: application/json
+Authorization: Bearer {{bearer_token}}
+
+###
+# Variable assignments based on above call(s) response
+@publisher_service_principal_id = dafceb59-c127-4361-b7c2-5e371bad9dcd
+@consumer_consumer_principal_id = 08b62938-eb39-4341-ae24-8acccf78a26a
+###
+POST https://graph.microsoft.com/v1.0/oauth2PermissionGrants
+Content-Type: application/json
+Authorization: Bearer {{bearer_token}}
+
+{
+    "clientId": "{{consumer_consumer_principal_id}}",
+    "consentType": "AllPrincipals",
+    "resourceId": "{{publisher_service_principal_id}}",
+    "scope": "my-favorate-scope-65536"
+}
+
+###
+# Create  oauth2PermissionGrants
+POST https://graph.microsoft.com/v1.0/oauth2PermissionGrants
+Content-Type: application/json
+Authorization: Bearer {{bearer_token}}
+
+{
+    "clientId": "{{consumer_consumer_principal_id}}",
+    "consentType": "AllPrincipals",
+    "resourceId": "{{publisher_service_principal_id}}",
+    "scope": "my-favorate-scope-65536"
+}
+
+
+###
+GET https://graph.microsoft.com/beta/oauth2PermissionGrants/?$filter= clientId eq '{{consumer_consumer_principal_id}}'
+Content-type: application/json
+Authorization: Bearer {{bearer_token}}
+
+###
+POST https://graph.microsoft.com/v1.0/applications/{{consumer_object_id}}/addPassword
+Content-type: application/json
+Authorization: Bearer {{bearer_token}}
+
+{
+  "passwordCredential": {
+    "displayName": "Auto Created",
+    "endDateTime": "2099-01-15T02:26:40.332188Z"
+  }
+}
+
+###
+# get the Key ID from the above call result
+# the GET application call response incudes application keys including their `keyId`
+POST https://graph.microsoft.com/v1.0/applications/{{consumer_object_id}}/removePassword
+Content-type: application/json
+Authorization: Bearer {{bearer_token}}
+
+{
+    "keyId": "961a0a7b-6440-4376-8b48-bcb9e62c8b19"
+}
+
+
+###
+GET https://graph.microsoft.com/beta/oauth2PermissionGrants
+Content-type: application/json
+Authorization: Bearer {{bearer_token}}
+
+
+###
+https://graph.microsoft.com/beta/applications/?$filter= displayName eq 'CCA-app-01'
+Authorization: Bearer {{bearer_token}}
+
+
+###
+DELETE https://graph.microsoft.com/beta/applications/09f81b06-1e6a-47db-a374-4dc6308cb88b
+Authorization: Bearer {{bearer_token}}

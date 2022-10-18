@@ -1,0 +1,7 @@
+﻿{
+  "tenantId": "6f952cb7-bbc8-4459-be91-fc31b3daaf0c",
+  "clientId": "9868e8b4-c150-43a6-a448-fce571e1534b",
+  "clientSecret": "ADD a file config.secret.json and include this item here. config.secret.json is in .gitignore and won't be pulled",
+  "publisherAppName": "a-publisher-01"
+  
+}
