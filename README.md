@@ -122,7 +122,7 @@ This is a C# code sample that creates the that create the Graph resources explai
 Explain the App template can be extracted from an existing app created through portal
 
 
-# Ideas for future enhancements:
+# Next steps - ideas for enhancements
     
 - Polish the code, add descriptive comments and break the C# method `CreateSampleApp` into smaller functional pieces
 - Add additional Application types to the sample that support a variety of OAuth flows
