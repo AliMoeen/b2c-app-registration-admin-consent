@@ -91,9 +91,10 @@ For more information, refer to the following page:
 
 # Code included in the repository
 
-# Sample Graph SDK Calls
-
 This repository includes two samples in the following directories :
+
+- `HttpCalls`
+- `B2CAutomatedAppRegistration`
 
 ## `HttpCalls`
 Includes the raw Graph REST API calls. 
@@ -113,7 +114,7 @@ Sample `.env`:
 client_secret = <<ADD GRAPH APPLICATION CLIENT SECRET HERE>>
 ```
 
-## B2CAutomatedAppRegistration
+## `B2CAutomatedAppRegistration`
 
 This is a C# code sample that creates the that create the Graph resources explained in the section "Concepts" above. 
 
